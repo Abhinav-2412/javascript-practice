@@ -1,208 +1,29 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eyes</title>
-</head>
-<body>
-    <div class="eye eye1">
-        <div class = "pupil">
-      </div>
-        <div class="eye eye2">
-          <div class="pupil"></div>
-        </div>
-
-
-</body>
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <style>
-    body
-{
-  background-color: #B6D4AA;
-  margin:0;
-}
-
-.eye
-{
-  background-color: white;
-   width:200px;
-  height:200px;
-  
-  position: absolute;
-  left:50%;
-  top:50%;
-  margin-left: -100px;
-  margin-top: -100px;
-  
-}
-
-.pupil
-{
-   background-color: black;
-   width:50px;
-  height:50px;
-  
-  position: absolute;
-  left:50%;
-  top:50%;
-  margin-left: -25px;
-  margin-top: -25px; 
-}
-
-.eye1
-{
-  margin-left:-225px;
-  
-}
-.eye2
-{
-  margin-left:225px;
-}
-
+    body{
+        margin:0; 
+        background: black;
+    }
 </style>
 
-<script>
-    // html setup
-
-var pupilCollection = document.getElementsByClassName('pupil');
-
-var pupilArray = Array.from(pupilCollection);
 
 
+<div class = "fixed text-white text-sm ml-2 mt-1 select-none"><span>Score :</span><span id = "scoreEl"> 0</span></div>
+<div class = "fixed inset-0 flex items-center justify-center " id = "modalEl">
+    <div class = "bg-white max-w-md w-full p-6 text-center">
+        <h1 class = "text-4xl font-bold" id = "score2">0</h1>
+        <p class = "text-sm text-gray-700">Points</p>
+        <div>
+            <button class = "bg-blue-500 text-white w-full py-3 rounded-full" id = "startGameBtn"><span id = "restartGame">Start Game</span></button>
+        </div>
 
+    </div>
+</div>
+<canvas></canvas>
 
-
-
-
-
-
-
-// input
-var input = {
-  
-  mouseX:
-  {
-    start:0,
-    end: window.innerWidth,
-    current:0,
-},
-  mouseY:{
-    
-    start:0,
-    end: window.innerHeight,
-    current: 0,
-  },
-  
-};
-
-
-//for x
-input.mouseX.range = input.mouseX.end - input.mouseX.start;
-//for y
-input.mouseY.range = input.mouseY.end - input.mouseY.start;
-
-
-
-
-// output
-var output = {
-  
-  X:{
-    start: -75,
-    end: 75,
-    current:0,
-  
-},
-Y:{
-  start: -75,
-    end: 75,
-    current:0,
-},
-};
-//output X
-output.X.range = output.X.end - output.X.start;
-// OUtput Y
-output.Y.range = output.Y.end - output.Y.start;
-
-
-
-
-
-
-
-
-var handleMousemove = function(bob){
-  
-//  vars();
-  // for x
-  input.mouseX.current = event.clientX;
-  input.mouseX.fraction = (input.mouseX.current - input.mouseX.start)/input.mouseX.range;
- 
-  
-  // for Y
-  input.mouseY.current = event.clientY;
-  input.mouseY.fraction = (input.mouseY.current - input.mouseY.start)/input.mouseY.range;
- // output X
-  output.X.current = output.X.start + (input.mouseX.fraction * output.X.range);
-  
-  output.X.opposite = output.X.end-(input.mouseX.fraction * output.X.range);
-  
-  // output Y
-  output.Y.current = output.Y.start + (input.mouseY.fraction * output.Y.range);
-  
-   output.Y.opposite = output.Y.end- (input.mouseY.fraction * output.Y.range);
-  
-  
-  pupilArray.forEach(function(pupil,k ){
-    
-    if(k==0)
-      {
-         pupil.style.transform = 'translate('+output.X.current+'px,'+output.Y.current+'px)';
-      }
-    else
-      {
-         pupil.style.transform = 'translate('+output.X.opposite+'px,'+output.Y.opposite+'px)';
-      }
-   
-
-  }
-                     
-                    
-    
-  );
-  
-  
-  
-  
-  
- // console.log("output",output.X.current);
-  
-  
-  //for x
-  // console.log("fractionX",input.mouseX.fraction);
-  // //for y
-  // console.log("fractionY",input.mouseY.fraction);
-  
-}
-
-var handleresize = function()
-{
-  
-  //for x
-  input.mouseX.end = window.innerWidth;
-  input.mouseX.range = input.mouseX.end - input.mouseX.start;
-  
-  // for y
-  
-   input.mouseY.end = window.innerHeight;
-  input.mouseY.range = input.mouseY.end - input.mouseY.start;
-  
-}
-
-
-window.addEventListener('mousemove', handleMousemove);
-window.addEventListener('resize', handleresize);
-    
+<script 
+src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" 
+integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ==" 
+crossorigin="anonymous" referrerpolicy="no-referrer">
 </script>
-
-</html>
+<script src = "./index.js"></script>
