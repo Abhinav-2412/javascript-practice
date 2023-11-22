@@ -17,7 +17,7 @@ window.onload = function() {
     // This is very IMPORTANT!! We're going to use "db" a lot.
     var db = firebase.database()
     // We're going to use oBjEcT OrIeNtEd PrOgRaMmInG. Lol
-    class MEME_CHAT{
+    class CHAT{
       // Home() is used to create the home page
       home(){
         // First clear the body before adding in
@@ -147,8 +147,15 @@ window.onload = function() {
         var chat_input_send = document.createElement('button')
         chat_input_send.setAttribute('id', 'chat_input_send')
         chat_input_send.setAttribute('disabled', true)
-        chat_input_send.innerHTML = `<i class="far fa-paper-plane"></i>`
-  
+        chat_input_send.innerHTML = `Send<i class="far fa-paper-plane"></i>`
+        
+        // chat_input.addEventListener("keypress", function(event) {
+        //     if (event.key === "Enter") {
+        //       document.getElementById("chat_input_send").click()
+        //     }
+        //   })
+        
+
         var chat_input = document.createElement('input')
         chat_input.setAttribute('id', 'chat_input')
         // Only a max message length of 1000
@@ -156,6 +163,10 @@ window.onload = function() {
         // Get the name of the user
         chat_input.placeholder = `${parent.get_name()}. Say something...`
         chat_input.onkeyup  = function(){
+        chat_input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                document.getElementById("chat_input_send").click()}
+            })
           if(chat_input.value.length > 0){
             chat_input_send.removeAttribute('disabled')
             chat_input_send.classList.add('enabled')
@@ -327,7 +338,7 @@ window.onload = function() {
       }
     }
     // So we've "built" our app. Let's make it work!!
-    var app = new MEME_CHAT()
+    var app = new CHAT()
     // If we have a name stored in localStorage.
     // Then use that name. Otherwise , if not.
     // Go to home.
