@@ -1,9 +1,15 @@
 body{
     /* https://www.color-hex.com/color/d3d3d3 */
-    background-color: #fff; /*#f6f6f6, EBEBD3, fafafa*/
-    font-family: Bungee Outline;
+    
+    
     font-weight: 900;
-  
+    width: 100%;
+    height: 100vh;
+    
+    background-image: url("../images/slider-bg-01@2x.jpg");
+    background-color: whitesmoke;
+    background-blend-mode: multiply;
+    font-family: 'Poppins',sans-serif;
     overflow: hidden;
     animation: blur 0.5s ease-out;
   
@@ -23,7 +29,7 @@ body{
     justify-content: center;
     align-items: center;
   
-    background-color: #D64045;/*#467599;*/
+    background-color: rgb(55,55,55);/*#467599;*/
     border-bottom: 5px solid #fff;
     box-shadow: 0 0 30px -18px #D64045;
   
@@ -186,7 +192,7 @@ body{
     margin-top: 20px;
   }
   #chat_logout{
-    color: #D64045;
+    color: rgb(55,55,55);
     cursor: pointer;
   }
   #chat_logout:hover{
